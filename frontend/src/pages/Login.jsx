@@ -13,10 +13,12 @@ const Login = () => {
         "http://localhost:5000/api/auth/login",
         { email, password }
       );
-      if (response.data.success) alert("Successfully login");
+      if (response.data.success) {
+        alert("Successfully login");
+      }
       console.log(response);
     } catch (error) {
-      if (error.response && !error.data.success) {
+      if (error.response && !error.response.data.success) {
         setError(error.response.data.error);
       } else {
         setError("Server Error");
@@ -42,6 +44,7 @@ const Login = () => {
               className="w-full px-3 py-2 border"
               placeholder="Enter Email"
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="mb-4">
@@ -53,6 +56,7 @@ const Login = () => {
               className="w-full px-3 py-2 border"
               placeholder="*******"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div className="mb-4 flex items-center justify-between">
