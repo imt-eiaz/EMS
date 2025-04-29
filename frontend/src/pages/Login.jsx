@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useAuth } from "../context/authContext";
 
 const Login = () => {
@@ -19,8 +19,7 @@ const Login = () => {
       );
       if (response.data.success) {
         login(response.data.user);
-        console.log(response.data.user);
-        localStorage.setItem("token", response.datatoken);
+        localStorage.setItem("token", response.data.token);
         if (response.data.user.role === "admin") {
           navigate("/admin-dashboard");
         } else {
