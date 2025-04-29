@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router";
-import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/authContext.jsx";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center h-screen justify-center bg-gradient-to-b from-green-700 from-50% to-gray-100 to-50% space-y-6">
       <h2 className="font-Dosis text-5xl mb-10 text-white">
-        Phonebox Gadgets Cirencester
+        PhoneBox Gadgets Cirencester
       </h2>
       <div className="border shadow p-6 w-80 bg-white">
         <h2 className="text-2xl font-bold mb-4">Login</h2>

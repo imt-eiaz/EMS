@@ -1,4 +1,5 @@
 import { StrictMode } from "react";
+import AuthContext from "./context/authContext.jsx";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
@@ -8,7 +9,6 @@ import { Route, Navigate } from "react-router-dom";
 import { Routes } from "react-router";
 import AdminDashboard from "./pages/AdminDashboard";
 import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
-import AuthContext from "./context/authContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <AuthContext>
