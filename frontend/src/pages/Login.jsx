@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <div className="flex flex-col items-center h-screen justify-center bg-gradient-to-b from-green-700 from-50% to-gray-100 to-50% space-y-6">
       <h2 className="font-Dosis text-5xl mb-10 text-white">
-        PhoneBox Gadgets Cirencester
+        Phonebox Gadgets Cirencester
       </h2>
       <div className="border shadow p-6 w-80 bg-white">
         <h2 className="text-2xl font-bold mb-4">Login</h2>

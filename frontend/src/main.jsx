@@ -7,8 +7,8 @@ import Login from "./pages/Login";
 import { Route, Navigate } from "react-router-dom";
 import { Routes } from "react-router";
 import AdminDashboard from "./pages/AdminDashboard";
-import AuthContext from "./context/authContext.jsx";
 import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
+import AuthContext from "./context/authContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <AuthContext>
