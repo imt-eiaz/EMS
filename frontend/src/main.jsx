@@ -11,6 +11,8 @@ import AdminDashboard from "./pages/AdminDashboard";
 import EmployeeDashboard from "./pages/EmployeeDashboard.jsx";
 import PrivateRoutes from "./utils/PrivateRoutes.jsx";
 import RoleBaseRoutes from "./utils/RoleBaseRoutes.jsx";
+import AdminSummary from "./components/dashboard/AdminSummary.jsx";
+import DepartmentList from "./components/departments/DepartmentList.jsx";
 
 createRoot(document.getElementById("root")).render(
   <AuthContext>
@@ -27,7 +29,13 @@ createRoot(document.getElementById("root")).render(
               </RoleBaseRoutes>
             </PrivateRoutes>
           }
-        ></Route>
+        >
+          <Route index element={<AdminSummary />}></Route>
+          <Route
+            path="/admin-dashboard/departments"
+            element={<DepartmentList />}
+          ></Route>
+        </Route>
         <Route
           path="/employee-dashboard"
           element={<EmployeeDashboard />}

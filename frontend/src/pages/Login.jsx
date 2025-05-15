@@ -81,7 +81,7 @@ const Login = () => {
           <div className="mb-4">
             <button
               type="submit"
-              className="w-full bg-green-700 text-white py-2"
+              className="cursor-pointer w-full bg-green-700 text-white py-2"
             >
               Login
             </button>
