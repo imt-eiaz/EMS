@@ -15,7 +15,7 @@ const AdminSummary = () => {
         />
         <SummaryCard
           icon={<FaBuilding />}
-          text="Total Departments"
+          text="Total Department"
           number={5}
           color="bg-yellow-600"
         />
