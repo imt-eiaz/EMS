@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,15 +18,18 @@ const AddDepartment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios("http://localhost:5000/api/department/add", department {
-        headers: {
-          "Authorization": `Bearer ${localStorage.getItem("token")}`
+      const response = await axios.post(
+        "http://localhost:5000/api/department/add",
+        department,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
-      })
+      );
       if (response.data.success) {
-       navigate("/admin-dashboard/departments");
+        navigate("/admin-dashboard/departments");
       }
-        
     } catch (error) {
       if (error.response && !error.response.data.success) {
         alert(error.response.data.error);
