@@ -7,3 +7,5 @@ const router = express.Router();
 router.post("/add", authMiddleware, addDepartment);
 
 export default router;
+
+// , addDepartment
