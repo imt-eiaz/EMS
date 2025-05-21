@@ -14,6 +14,7 @@ import RoleBaseRoutes from "./utils/RoleBaseRoutes.jsx";
 import AdminSummary from "./components/dashboard/AdminSummary.jsx";
 import DepartmentList from "./components/departments/DepartmentList.jsx";
 import AddDepartment from "./components/departments/AddDepartment.jsx";
+import EditDepartment from "./components/departments/EditDepartment.jsx";
 
 createRoot(document.getElementById("root")).render(
   <AuthContext>
@@ -39,6 +40,11 @@ createRoot(document.getElementById("root")).render(
           <Route
             path="/admin-dashboard/add-department"
             element={<AddDepartment />}
+          ></Route>
+
+          <Route
+            path="/admin-dashboard/department/:id"
+            element={<EditDepartment />}
           ></Route>
         </Route>
         <Route
