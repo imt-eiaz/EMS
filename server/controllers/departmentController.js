@@ -1,6 +1,16 @@
 import Department from "../models/Department.js";
 
-// new code
+const getDepartments = async (req, res) => {
+  try {
+    const departments = await Department.find();
+    return res.status(200).json({ success: true, departments });
+  } catch (error) {
+    return res
+      .status(200)
+      .json({ success: false, message: "get department server error" });
+  }
+};
+
 const addDepartment = async (req, res) => {
   const { dep_name, description } = req.body;
   const newDep = new Department({
@@ -13,19 +23,4 @@ const addDepartment = async (req, res) => {
   return res.status(200).json({ success: true, department: newDep });
 };
 
-export { addDepartment };
-
-//old code
-// try {
-//   const { dep_name, description } = req.body;
-//   const newDep = new Department({
-//     dep_name,
-//     description,
-//   });
-//   await newDep.save();
-//   return res.status(200).json({ success: true, department: newDep });
-// } catch (error) {
-//   return res
-//     .status(500)
-//     .json({ success: false, error: "add department server error" });
-// }
+export { addDepartment, getDepartments };
