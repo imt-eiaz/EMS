@@ -9,6 +9,7 @@ const EditDepartment = () => {
   const { id } = useParams();
   const [department, setDepartment] = useState([]);
   const [depLoading, setDepLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDepartments = async () => {
@@ -38,11 +39,10 @@ const EditDepartment = () => {
   }, []);
 
   const handleChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setDepartment({ ...department, [name]: value });
   };
-
-  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();

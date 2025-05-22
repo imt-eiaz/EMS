@@ -9,6 +9,13 @@ import axios from "axios";
 const DepartmentList = () => {
   const [departments, setDepartments] = useState([]);
   const [depLoading, setDepLoading] = useState(false);
+  const [filteredDepartments, setFilteredDepartments] = useState([]);
+
+  const onDepartmentDelete = async (id) => {
+    const data = departments.filter((dep) => dep._id !== id);
+    setDepartments(data);
+  };
+
   useEffect(() => {
     const fetchDepartments = async () => {
       setDepLoading(true);
@@ -27,9 +34,15 @@ const DepartmentList = () => {
             _id: dep._id,
             sno: sno++,
             dep_name: dep.dep_name,
-            action: <DepartmentButtons _id={dep._id} />,
+            action: (
+              <DepartmentButtons
+                Id={dep._id}
+                onDepartmentDelete={onDepartmentDelete}
+              />
+            ),
           }));
           setDepartments(data);
+          setFilteredDepartments(data);
         }
       } catch (error) {
         if (error.response && !error.response.data.success) {
@@ -41,6 +54,14 @@ const DepartmentList = () => {
     };
     fetchDepartments();
   }, []);
+
+  const filterDepartments = (e) => {
+    const records = departments.filter((dep) =>
+      dep.dep_name.toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setFilteredDepartments(records);
+  };
+
   return (
     <>
       {" "}
@@ -56,6 +77,7 @@ const DepartmentList = () => {
               type="text"
               placeholder="Search by Dep Name"
               className="px-4 py-0.5 border"
+              onChange={filterDepartments}
             />
             <Link
               to="/admin-dashboard/add-department"
@@ -65,7 +87,11 @@ const DepartmentList = () => {
             </Link>
           </div>
           <div className="m-5">
-            <DataTable columns={columns} data={departments} />
+            <DataTable
+              columns={columns}
+              data={filteredDepartments}
+              pagination
+            />
           </div>
         </div>
       )}{" "}
