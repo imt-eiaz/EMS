@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const EditDepartment = () => {
   const { id } = useParams();
@@ -41,6 +42,30 @@ const EditDepartment = () => {
     setDepartment({ ...department, [name]: value });
   };
 
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/api/department/${id}`,
+        department,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      if (response.data.success) {
+        navigate("/admin-dashboard/departments");
+      }
+    } catch (error) {
+      if (error.response && !error.response.data.success) {
+        alert(error.response.data.error);
+      }
+    }
+  };
+
   return (
     <>
       {depLoading ? (
@@ -48,7 +73,7 @@ const EditDepartment = () => {
       ) : (
         <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md w-96">
           <h2 className="text-2xl font-bold mb-6">Edit Department</h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div>
               <label
                 htmlFor="dep_name"
